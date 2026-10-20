@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한국사 문제풀이</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#6b7385;--line:#e1e4ea;--accent:#2f5bd6;--ok:#1f9d57;--ng:#d6453d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.5}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;margin:8px 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-bottom:14px}
+label{display:block;margin:8px 0;cursor:pointer}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row-between{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+button{font:inherit;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 16px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.small-btn{padding:4px 10px;font-size:12px;border-radius:6px;margin-left:auto}
+button:disabled{opacity:.45;cursor:default}
+input[type=number]{font:inherit;width:90px;padding:8px;border:1px solid var(--line);border-radius:8px}
+.muted{color:var(--sub);font-size:14px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin:6px 0 14px}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.qimg{width:100%;display:block;border:1px solid var(--line);border-radius:8px;background:#fff}
+.choices{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+.choices button{font-size:22px;padding:12px 0}
+.choices button.sel{background:#e8eefc;border-color:var(--accent)}
+.choices button.ok{background:#e3f6ec;border-color:var(--ok);color:var(--ok)}
+.choices button.ng{background:#fde8e6;border-color:var(--ng);color:var(--ng)}
+.score{font-size:40px;font-weight:700}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;background:#eef0f4;color:var(--sub);margin-left:6px}
+.wrong{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.wrong img{width:180px;border:1px solid var(--line);border-radius:6px;cursor:zoom-in}
+.hidden{display:none}
+.examgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:2px 10px}
+.fb{margin-top:12px;font-weight:600}
+@media(max-width:560px){.wrong{flex-direction:column}.wrong img{width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📚 한국사 문제풀이</h1>
+
+  <!-- 설정 화면 -->
+  <div id="setup">
+    <div class="card">
+      <div class="row-between">
+        <div><b>회차 범위</b> <span class="muted" id="poolInfo"></span></div>
+        <button id="toggleExams" class="small-btn">전체 해제</button>
+      </div>
+      <div class="examgrid" id="examList"></div>
+    </div>
+    
+    <div class="card">
+      <div class="row-between">
+        <b>시대별 출제</b>
+        <button id="toggleEras" class="small-btn">전체 해제</button>
+      </div>
+      <div class="examgrid" id="eraList"></div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <b>문항 수</b>
+        <input type="number" id="count" min="1" value="20">
+        <button data-n="10">10</button><button data-n="20">20</button><button data-n="50">50</button><button data-n="100">100</button>
+      </div>
+      <label><input type="checkbox" id="instant" checked> 문제마다 바로 정답 확인</label>
+      <label><input type="checkbox" id="onlyWrong"> 지난번에 틀린 문제만 출제 (오답노트: <span id="wrongCnt">0</span>문항)</label>
+      <label><input type="checkbox" id="avoidDone"> 이미 맞힌 문제는 제외</label>
+    </div>
+    <div class="row">
+      <button class="primary" id="start">시작하기</button>
+      <button id="reset">기록 초기화</button>
+    </div>
+  </div>
+
+  <!-- 풀이 화면 -->
+  <div id="quiz" class="hidden">
+    <div class="muted"><span id="prog"></span><span class="tag" id="meta"></span><span class="tag" id="metaEra"></span></div>
+    <div class="bar"><i id="barfill"></i></div>
+    <div class="card">
+      <img id="qimg" class="qimg" alt="문제">
+      <div class="choices" id="choices"></div>
+      <div class="fb" id="fb"></div>
+      <div class="row" style="margin-top:14px">
+        <button id="prev">이전</button>
+        <button class="primary" id="next">다음</button>
+        <span class="muted">키보드 1~5로 선택, ←/→ 이동</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 결과 화면 -->
+  <div id="result" class="hidden">
+    <div class="card">
+      <div class="muted">결과</div>
+      <div class="score"><span id="rScore"></span></div>
+      <div id="rDetail" class="muted"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="primary" id="again">다시 설정</button>
+        <button id="retryWrong">틀린 문제 다시 풀기</button>
+      </div>
+    </div>
+    <div class="card" id="wrongBox"><b>틀린 문제</b><div id="wrongList"></div></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const Q = window.QUESTIONS || [];
+
+// 🔥 핵심: 파이썬을 쓰지 않고 브라우저에서 즉석으로 문항 번호를 보고 시대를 할당합니다!
+function assignEra(no) {
+  if (no <= 2) return "1. 선사 및 고조선";
+  if (no <= 11) return "2. 고대 (삼국/남북국)";
+  if (no <= 21) return "3. 고려 시대";
+  if (no <= 34) return "4. 조선 시대";
+  if (no <= 41) return "5. 근대 (개항기)";
+  if (no <= 46) return "6. 일제강점기";
+  return "7. 현대사";
+}
+
+// Q 배열의 모든 문제 데이터에 era 값을 주입
+Q.forEach(q => {
+  q.era = assignEra(q.no);
+});
+
+const $ = id => document.getElementById(id);
+const store = {
+  get(){ try{ return JSON.parse(localStorage.getItem('hist_quiz')||'{}') }catch(e){ return {} } },
+  set(v){ try{ localStorage.setItem('hist_quiz', JSON.stringify(v)) }catch(e){} }
+};
+let hist = store.get();
+let run = null;
+
+const isOk = (q,a) => q.answer===0 || a===q.answer;
+const exams = [...new Set(Q.map(q=>q.exam))];
+const eras = [...new Set(Q.map(q=>q.era))].sort(); // 이제 미분류 없이 완벽하게 정렬됩니다.
+
+function buildSetup(){
+  $('examList').innerHTML = exams.map(e=>`<label><input type="checkbox" class="ex" value="${e}" checked> ${e.replace(/^e/,'')}회</label>`).join('');
+  $('eraList').innerHTML = eras.map(e=>`<label><input type="checkbox" class="era-chk" value="${e}" checked> ${e}</label>`).join('');
+
+  document.querySelectorAll('.ex, .era-chk').forEach(c=>c.onchange=updatePool);
+  ['onlyWrong','avoidDone'].forEach(i=>$(i).onchange=updatePool);
+  
+  bindToggleBtn('toggleExams', '.ex');
+  bindToggleBtn('toggleEras', '.era-chk');
+  
+  updatePool();
+}
+
+function bindToggleBtn(btnId, chkSelector) {
+  const btn = $(btnId);
+  btn.onclick = () => {
+    const chks = document.querySelectorAll(chkSelector);
+    const isAllChecked = [...chks].every(c => c.checked);
+    chks.forEach(c => c.checked = !isAllChecked);
+    updatePool();
+  };
+}
+
+function refreshToggleBtnState() {
+  const exChks = document.querySelectorAll('.ex');
+  if(exChks.length > 0) $('toggleExams').textContent = [...exChks].every(c => c.checked) ? '전체 해제' : '전체 선택';
+  
+  const eraChks = document.querySelectorAll('.era-chk');
+  if(eraChks.length > 0) $('toggleEras').textContent = [...eraChks].every(c => c.checked) ? '전체 해제' : '전체 선택';
+}
+
+function pool(){
+  const selExams = new Set([...document.querySelectorAll('.ex:checked')].map(c=>c.value));
+  const selEras = new Set([...document.querySelectorAll('.era-chk:checked')].map(c=>c.value));
+  
+  let p = Q.filter(q => selExams.has(q.exam) && selEras.has(q.era));
+  
+  if($('onlyWrong').checked) p = p.filter(q=>hist[q.id]==='ng');
+  if($('avoidDone').checked) p = p.filter(q=>hist[q.id]!=='ok');
+  return p;
+}
+
+function updatePool(){
+  $('poolInfo').textContent = `· 출제 가능 ${pool().length}문항 / 전체 ${Q.length}문항`;
+  $('wrongCnt').textContent = Object.values(hist).filter(v=>v==='ng').length;
+  refreshToggleBtnState();
+}
+document.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>$('count').value=b.dataset.n);
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a }
+function show(id){ ['setup','quiz','result'].forEach(x=>$(x).classList.toggle('hidden',x!==id)); window.scrollTo(0,0) }
+
+function begin(list){
+  if(!list.length){ alert('출제할 문제가 없어요. 범위나 옵션을 확인해 주세요.'); return }
+  run = {list, i:0, ans:{}, instant:$('instant').checked, done:false};
+  show('quiz'); render();
+}
+$('start').onclick = ()=>{
+  const n = Math.max(1, parseInt($('count').value)||20);
+  begin(shuffle(pool()).slice(0,n));
+};
+
+function render(){
+  const q = run.list[run.i], a = run.ans[q.id];
+  $('prog').textContent = `${run.i+1} / ${run.list.length}`;
+  $('meta').textContent = `${q.exam.replace(/^e/,'')}회 ${q.no}번 · ${q.points}점`;
+  $('metaEra').textContent = q.era; 
+
+  $('barfill').style.width = ((run.i+1)/run.list.length*100)+'\%';$('qimg').src = 'questions/'+q.image;
+  const locked = run.instant && a!=null;
+  $('choices').innerHTML = [1,2,3,4,5].map(n=>{
+    let c='';
+    if(a===n) c='sel';
+    if(locked){ if(q.answer===0){ if(a===n) c='ok'; } else if(n===q.answer) c='ok'; else if(a===n) c='ng'; }
+    return `<button class="${c}" data-n="${n}" ${locked?'disabled':''}>${'①②③④⑤'[n-1]}</button>`;
+  }).join('');
+  $('choices').querySelectorAll('button').forEach(b=>b.onclick=()=>pick(+b.dataset.n));$('fb').textContent = locked ? (q.answer===0 ? '⭕ 정답 없음 문항 — 전원 정답 처리' : a===q.answer ? '⭕ 정답!' : `❌ 오답 — 정답은 ${'①②③④⑤'[q.answer-1]}`) : '';
+  $('fb').style.color = locked ? (isOk(q,a)?'var(--ok)':'var(--ng)') : '';
+  $('prev').disabled = run.i===0;
+  $('next').textContent = run.i===run.list.length-1 ? '채점하기' : '다음';
+}
+function pick(n){
+  const q = run.list[run.i];
+  if(run.instant && run.ans[q.id]!=null) return;
+  run.ans[q.id] = n; render();
+}
+$('prev').onclick = ()=>{ if(run.i>0){run.i--;render()} };$('next').onclick = ()=>{
+  if(run.i<run.list.length-1){ run.i++; render(); return }
+  const un = run.list.filter(q=>run.ans[q.id]==null).length;
+  if(un && !confirm(`풀지 않은 문제가 ${un}개 있어요. 그래도 채점할까요?`)) return;
+  finish();
+};
+document.addEventListener('keydown',e=>{
+  if($('quiz').classList.contains('hidden')) return;
+  if(e.key>='1'&&e.key<='5') pick(+e.key);
+  else if(e.key==='ArrowRight') $('next').click();
+  else if(e.key==='ArrowLeft') $('prev').click();
+});
+
+function finish(){
+  let got=0,total=0,okN=0; const wrong=[];
+  run.list.forEach(q=>{
+    total+=q.points;
+    if(isOk(q,run.ans[q.id])){ got+=q.points; okN++; hist[q.id]='ok' }
+    else { wrong.push(q); hist[q.id]='ng' }
+  });
+  store.set(hist);
+  $('rScore').textContent = `${got} / ${total}점`;
+  $('rDetail').textContent = `${run.list.length}문항 중 ${okN}문항 정답 (정답률 ${Math.round(okN/run.list.length*100)}%)`;
+  $('wrongBox').classList.toggle('hidden', !wrong.length);$('wrongList').innerHTML = wrong.map(q=>`
+    <div class="wrong">
+      <a href="questions/${q.image}" target="_blank"><img src="questions/${q.image}" loading="lazy"></a>
+      <div><b>${q.exam.replace(/^e/,'')}회 ${q.no}번</b><span class="tag">${q.points}점</span><span class="tag">${q.era}</span><br>
+      내 답: ${run.ans[q.id]?'①②③④⑤'[run.ans[q.id]-1]:'미응답'} · 정답: <b style="color:var(--ok)">${q.answer===0?'없음(전원 정답)':'①②③④⑤'[q.answer-1]}</b></div>
+    </div>`).join('');
+  run.wrong = wrong; run.done = true;
+  $('retryWrong').disabled = !wrong.length;
+  show('result');
+}
+$('retryWrong').onclick = ()=>begin(shuffle(run.wrong));
+$('again').onclick = ()=>{ updatePool(); show('setup') };$('reset').onclick = ()=>{ if(confirm('풀이 기록(오답노트 포함)을 모두 지울까요?')){ hist={}; store.set(hist); updatePool() } };
+
+buildSetup();
+</script>
+</body>
+</html>
