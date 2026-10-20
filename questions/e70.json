@@ -1,0 +1,402 @@
+[
+ {
+  "id": "e70-01",
+  "exam": "e70",
+  "no": 1,
+  "image": "e70_01.jpg",
+  "answer": 3,
+  "points": 1
+ },
+ {
+  "id": "e70-02",
+  "exam": "e70",
+  "no": 2,
+  "image": "e70_02.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-03",
+  "exam": "e70",
+  "no": 3,
+  "image": "e70_03.jpg",
+  "answer": 2,
+  "points": 3
+ },
+ {
+  "id": "e70-04",
+  "exam": "e70",
+  "no": 4,
+  "image": "e70_04.jpg",
+  "answer": 1,
+  "points": 2
+ },
+ {
+  "id": "e70-05",
+  "exam": "e70",
+  "no": 5,
+  "image": "e70_05.jpg",
+  "answer": 2,
+  "points": 2
+ },
+ {
+  "id": "e70-06",
+  "exam": "e70",
+  "no": 6,
+  "image": "e70_06.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-07",
+  "exam": "e70",
+  "no": 7,
+  "image": "e70_07.jpg",
+  "answer": 4,
+  "points": 1
+ },
+ {
+  "id": "e70-08",
+  "exam": "e70",
+  "no": 8,
+  "image": "e70_08.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-09",
+  "exam": "e70",
+  "no": 9,
+  "image": "e70_09.jpg",
+  "answer": 4,
+  "points": 3
+ },
+ {
+  "id": "e70-10",
+  "exam": "e70",
+  "no": 10,
+  "image": "e70_10.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-11",
+  "exam": "e70",
+  "no": 11,
+  "image": "e70_11.jpg",
+  "answer": 4,
+  "points": 1
+ },
+ {
+  "id": "e70-12",
+  "exam": "e70",
+  "no": 12,
+  "image": "e70_12.jpg",
+  "answer": 3,
+  "points": 3
+ },
+ {
+  "id": "e70-13",
+  "exam": "e70",
+  "no": 13,
+  "image": "e70_13.jpg",
+  "answer": 1,
+  "points": 2
+ },
+ {
+  "id": "e70-14",
+  "exam": "e70",
+  "no": 14,
+  "image": "e70_14.jpg",
+  "answer": 4,
+  "points": 2
+ },
+ {
+  "id": "e70-15",
+  "exam": "e70",
+  "no": 15,
+  "image": "e70_15.jpg",
+  "answer": 4,
+  "points": 2
+ },
+ {
+  "id": "e70-16",
+  "exam": "e70",
+  "no": 16,
+  "image": "e70_16.jpg",
+  "answer": 3,
+  "points": 1
+ },
+ {
+  "id": "e70-17",
+  "exam": "e70",
+  "no": 17,
+  "image": "e70_17.jpg",
+  "answer": 4,
+  "points": 2
+ },
+ {
+  "id": "e70-18",
+  "exam": "e70",
+  "no": 18,
+  "image": "e70_18.jpg",
+  "answer": 1,
+  "points": 2
+ },
+ {
+  "id": "e70-19",
+  "exam": "e70",
+  "no": 19,
+  "image": "e70_19.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-20",
+  "exam": "e70",
+  "no": 20,
+  "image": "e70_20.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-21",
+  "exam": "e70",
+  "no": 21,
+  "image": "e70_21.jpg",
+  "answer": 1,
+  "points": 2
+ },
+ {
+  "id": "e70-22",
+  "exam": "e70",
+  "no": 22,
+  "image": "e70_22.jpg",
+  "answer": 5,
+  "points": 3
+ },
+ {
+  "id": "e70-23",
+  "exam": "e70",
+  "no": 23,
+  "image": "e70_23.jpg",
+  "answer": 2,
+  "points": 2
+ },
+ {
+  "id": "e70-24",
+  "exam": "e70",
+  "no": 24,
+  "image": "e70_24.jpg",
+  "answer": 2,
+  "points": 2
+ },
+ {
+  "id": "e70-25",
+  "exam": "e70",
+  "no": 25,
+  "image": "e70_25.jpg",
+  "answer": 2,
+  "points": 1
+ },
+ {
+  "id": "e70-26",
+  "exam": "e70",
+  "no": 26,
+  "image": "e70_26.jpg",
+  "answer": 4,
+  "points": 2
+ },
+ {
+  "id": "e70-27",
+  "exam": "e70",
+  "no": 27,
+  "image": "e70_27.jpg",
+  "answer": 1,
+  "points": 1
+ },
+ {
+  "id": "e70-28",
+  "exam": "e70",
+  "no": 28,
+  "image": "e70_28.jpg",
+  "answer": 2,
+  "points": 3
+ },
+ {
+  "id": "e70-29",
+  "exam": "e70",
+  "no": 29,
+  "image": "e70_29.jpg",
+  "answer": 1,
+  "points": 2
+ },
+ {
+  "id": "e70-30",
+  "exam": "e70",
+  "no": 30,
+  "image": "e70_30.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-31",
+  "exam": "e70",
+  "no": 31,
+  "image": "e70_31.jpg",
+  "answer": 1,
+  "points": 3
+ },
+ {
+  "id": "e70-32",
+  "exam": "e70",
+  "no": 32,
+  "image": "e70_32.jpg",
+  "answer": 5,
+  "points": 2
+ },
+ {
+  "id": "e70-33",
+  "exam": "e70",
+  "no": 33,
+  "image": "e70_33.jpg",
+  "answer": 5,
+  "points": 2
+ },
+ {
+  "id": "e70-34",
+  "exam": "e70",
+  "no": 34,
+  "image": "e70_34.jpg",
+  "answer": 1,
+  "points": 3
+ },
+ {
+  "id": "e70-35",
+  "exam": "e70",
+  "no": 35,
+  "image": "e70_35.jpg",
+  "answer": 3,
+  "points": 1
+ },
+ {
+  "id": "e70-36",
+  "exam": "e70",
+  "no": 36,
+  "image": "e70_36.jpg",
+  "answer": 3,
+  "points": 1
+ },
+ {
+  "id": "e70-37",
+  "exam": "e70",
+  "no": 37,
+  "image": "e70_37.jpg",
+  "answer": 5,
+  "points": 2
+ },
+ {
+  "id": "e70-38",
+  "exam": "e70",
+  "no": 38,
+  "image": "e70_38.jpg",
+  "answer": 1,
+  "points": 2
+ },
+ {
+  "id": "e70-39",
+  "exam": "e70",
+  "no": 39,
+  "image": "e70_39.jpg",
+  "answer": 5,
+  "points": 3
+ },
+ {
+  "id": "e70-40",
+  "exam": "e70",
+  "no": 40,
+  "image": "e70_40.jpg",
+  "answer": 5,
+  "points": 1
+ },
+ {
+  "id": "e70-41",
+  "exam": "e70",
+  "no": 41,
+  "image": "e70_41.jpg",
+  "answer": 5,
+  "points": 3
+ },
+ {
+  "id": "e70-42",
+  "exam": "e70",
+  "no": 42,
+  "image": "e70_42.jpg",
+  "answer": 5,
+  "points": 2
+ },
+ {
+  "id": "e70-43",
+  "exam": "e70",
+  "no": 43,
+  "image": "e70_43.jpg",
+  "answer": 3,
+  "points": 2
+ },
+ {
+  "id": "e70-44",
+  "exam": "e70",
+  "no": 44,
+  "image": "e70_44.jpg",
+  "answer": 2,
+  "points": 2
+ },
+ {
+  "id": "e70-45",
+  "exam": "e70",
+  "no": 45,
+  "image": "e70_45.jpg",
+  "answer": 2,
+  "points": 2
+ },
+ {
+  "id": "e70-46",
+  "exam": "e70",
+  "no": 46,
+  "image": "e70_46.jpg",
+  "answer": 4,
+  "points": 1
+ },
+ {
+  "id": "e70-47",
+  "exam": "e70",
+  "no": 47,
+  "image": "e70_47.jpg",
+  "answer": 4,
+  "points": 3
+ },
+ {
+  "id": "e70-48",
+  "exam": "e70",
+  "no": 48,
+  "image": "e70_48.jpg",
+  "answer": 5,
+  "points": 2
+ },
+ {
+  "id": "e70-49",
+  "exam": "e70",
+  "no": 49,
+  "image": "e70_49.jpg",
+  "answer": 2,
+  "points": 2
+ },
+ {
+  "id": "e70-50",
+  "exam": "e70",
+  "no": 50,
+  "image": "e70_50.jpg",
+  "answer": 2,
+  "points": 2
+ }
+]
